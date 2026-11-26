@@ -1,0 +1,178 @@
+/* ภารกิจที่ 2: จัดสไตล์ <body> โทนมืดหม่นแบบ Doomer */
+body {
+  background: radial-gradient(circle at 25% 15%, #16181c 0%, #090a0c 75%);
+  color: #f2f1ed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 28px 16px;
+}
+
+header h1 {
+  text-align: center;
+  color: #8c929a;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0 auto 24px;
+}
+
+/* ภารกิจที่ 3: จัดสไตล์ .card แบบ Grid แบ่งซ้าย-ขวา + ชื่อมุมล่างขวา + แถบสีล่างซ้าย */
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  grid-template-areas:
+    "bio    photo"
+    "skills photo"
+    "bars   name";
+  column-gap: 28px;
+  row-gap: 14px;
+  align-items: start;
+  width: 740px;
+  max-width: 96%;
+  background-color: #111316;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+  margin: 0 auto;
+  padding: 28px 30px 26px;
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+/* ภารกิจที่ 4: จัดสไตล์รูปภาพ <img> ฝั่งขวา ขนาดใหญ่ ขาวดำ มุมโค้งเล็กน้อย */
+.card img {
+  grid-area: photo;
+  width: 250px;
+  height: 235px;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: grayscale(100%) contrast(112%) brightness(88%);
+  display: block;
+  margin: 0;
+}
+
+/* ภารกิจที่ 5: จัดสไตล์ชื่อ #profile-name อยู่มุมล่างขวาใต้รูป */
+#profile-name {
+  grid-area: name;
+  color: #f4f3ef;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: right;
+  margin: 4px 0 0;
+  line-height: 1.2;
+}
+
+/* ภารกิจที่ 6: จัดสไตล์ .bio อยู่ด้านบนซ้าย */
+.bio {
+  grid-area: bio;
+  color: #f2f1ed;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  margin: 0;
+}
+
+/* หัวข้อ Skill */
+.card h3 {
+  grid-area: skills;
+  color: #ffffff;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin: 4px 0 10px;
+}
+
+/* ภารกิจที่ 7: จัดสไตล์ <ul> ป้ายสกิลเรียงลงมาด้านซ้าย */
+ul {
+  grid-area: skills;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 48px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+ul li {
+  display: inline-block;
+  color: #b8bcc2;
+  background-color: #16181c;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+/* แถบสี 7 เฉดด้านล่างซ้าย (อิงโทนสีในภาพ) */
+.card::after {
+  content: "";
+  grid-area: bars;
+  align-self: center;
+  width: 245px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    to right,
+    #090a0c 0% 14.28%,
+    #111317 14.28% 28.56%,
+    #191c21 28.56% 42.84%,
+    #252a32 42.84% 57.12%,
+    #9ba2ac 57.12% 71.4%,
+    #f5f5f5 71.4% 85.68%,
+    #e7e3d7 85.68% 100%
+  );
+}
+
+/* ไอคอน Git & GitHub ด้านข้างป้ายสกิล (ใช้ SVG เบาๆ ผ่าน CSS) */
+.card::before {
+  content: "";
+  grid-area: skills;
+  align-self: end;
+  margin-left: 118px;
+  margin-bottom: 4px;
+  width: 96px;
+  height: 44px;
+  background-repeat: no-repeat;
+  background-position: left center, right center;
+  background-size: 40px 40px, 42px 42px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpolygon points='12 2 22 12 12 22 2 12'/%3E%3Ccircle cx='12' cy='9' r='2' fill='%23ffffff'/%3E%3Ccircle cx='12' cy='16' r='2' fill='%23ffffff'/%3E%3Cline x1='12' y1='11' x2='12' y2='14'/%3E%3Cline x1='12' y1='12.5' x2='15.5' y2='15'/%3E%3Ccircle cx='15.5' cy='15' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z'/%3E%3C/svg%3E");
+  opacity: 0.92;
+}
+
+/* ปรับให้ไม่ซ้อนกันบนหน้าจอแคบ */
+@media (max-width: 720px) {
+  .card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "name"
+      "bio"
+      "skills"
+      "bars";
+  }
+
+  .card img {
+    width: 100%;
+    max-width: 260px;
+    height: 220px;
+  }
+
+  #profile-name {
+    text-align: left;
+  }
+
+  .card::before {
+    margin-left: 120px;
+  }
+}
